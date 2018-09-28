@@ -4,6 +4,8 @@
 
 # We are going first to declare our listes and variables #
 
+from math import *
+
 
 commande = [0]*13 # command packet get 13 byte,  ASCII characters for az and el
 commande[0] = 0x57                  # S (start) shall always be 0x57
