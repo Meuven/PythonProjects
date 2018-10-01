@@ -21,19 +21,6 @@ shipaz = [0]*4   # Here we'll be save the orientation of the ship, ASCII charact
                                     # note that  the ship doesn't have El orientation.
 
   
-  # We will suppose that a file "gps.txt" existe, in which we can find every last al,lg gps  informations saved"
-  # Our GPS send informations with à 50 MHz speed, we will create our file with a 1Hz speed" 
-  
-  def init(T,t) :
-    G = []
-    gps= open("gps.txt","a")
-    for i in range(int(T)+1) :    # T could be a float #
-      time.sleep(1)
-      gps.write("al,lg /n")
-      G.append("al,lg)
-      if len(G) > t :            # For our need to calculate, we will only keep the t last gps informations
-               del G[0]
-  
             
             
     
