@@ -40,10 +40,9 @@ def init(T,10) :                     # T is the time of the mission, t is the nu
     if len(G) > 10 :                 # For our need to calculate, we will only keep the t last gps informations
       del G[0]
         
-       
-G = init(T,t)
-for k in G:
-  if G[k] < 
+
+
+
           
 
  
