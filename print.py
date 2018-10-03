@@ -30,7 +30,7 @@ shipaz = [0]*4   # Here we'll be save the orientation of the ship, ASCII charact
                                     # the geo north. The idea here is to save every last orientation to predict the orientation of the sbt
                                     # when the mission will start.
   
-def init(T,10) :                     # T is the time of the mission, t is the number of coordonates we will need .
+def init(T) :                     # T is the time of the mission,
   G = []
   gps= open("gps.txt","a")
   for i in range(int(T)+1) :        # T could be a float #
@@ -39,6 +39,14 @@ def init(T,10) :                     # T is the time of the mission, t is the nu
     G.append("d°")
     if len(G) > 10 :                 # For our need to calculate, we will only keep the t last gps informations
       del G[0]
+      
+ return(G)
+
+G = init(T)
+
+
+     
+
         
 
 
