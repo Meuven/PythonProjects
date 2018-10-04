@@ -9,7 +9,7 @@ import numpy as np
 from np import *
 import matplotlab.py as plt 
 from plt import *
-from ephem import *
+import ephem 
 
 
 commande = [0]*13                   # command packet get 13 byte,  ASCII characters for az and el
