@@ -22,7 +22,7 @@ reponse[11] = 0x20
 reponse[5] = 0x01                   # We gonna put for the moment resolution to 1deg/pulse
 reponse[10] = reponse[5]            # so we put the resolution to 1
 
-shipaz = [0]*4   # Here we'll be save the orientation of the ship, ASCII characters for az 
+shipaz = [0]*4                      # Here we'll be save the orientation of the ship, ASCII characters for az 
                                     # note that  the ship doesn't have El orientation
 
   
@@ -35,9 +35,9 @@ def init(T) :                       # T is the time of the mission,
   Lgps = open("gps.txt","a")
   for i in range(int(T)+1) :        # T could be a float #
     time.sleep(1)
-    gps.write("lat, long, d° /n")    # datas will before of all to be decoded in RINEX fortmat 
-    Lgps.write("lat, long, d°; /n")
-  Lgps.split(";")
+    gps.write("lat, long, d° /n")   # datas will before of all to be decoded in RINEX fortmat 
+    Lgps.write("lat, long, d° /n")
+  Lgps.split("/n")
   while Len(Lgps) > 10 :
     del(Lgps[0])
   return(Lgps)
