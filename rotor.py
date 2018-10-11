@@ -47,22 +47,23 @@ zero5 = chr(0)+chr(0)+chr(0)+chr(0)+chr(0)             # this variable will serv
 #we'r going to work with the liste commande and reponse as our intput as if they contained our datas.
 
 
-print ("Enter 888 to stop rotation.")
-print ("Enter 999 to update rotator status.")
-print ("Enter 987 to quit program.")
+print ("Enter stop to stop rotation.")
+print ("Enter status to update rotator status.")
+print ("Enter quit to quit program.")
+print ("Enter set to quit program.")
+
 
 #Get desired az and mode at the same time.
    print (" ")
-   input_az = input ("Enter azimuth: ")
-   az = int(input_az)
+   mode = input ("Enter mode: ")
    
 
 loop = 1
-while loop == 1 :
-	if mode == 997 :                  # in this mode we just stop the rotator and have back the az and el 
-		output = chr(87)+zero5+zero5+chr(15)+chr(32) # this cmd will stop the rotator
+while loop == 1 :		
+	if mode == 'stop' :                  			# in this mode we just stop the rotator and have back the az and el 
+		output = chr(87)+zero5+zero5+chr(15)+chr(32) 	# this cmd will stop the rotator
 	    	cmd= ser.write(output)
-    		sleep(1)                        # wait for an answer
+    		sleep(1)                        		# wait for an answer
 
     		rep = ser.read(12)
 #Now it's time to give the reponse to the user, before, we need to convert our datas:
@@ -87,7 +88,7 @@ while loop == 1 :
     		print ("Azimuth multiplier is %3d "%(az_res)+ "  Elevation Multiplier is %3d "%(el_res))
       
       
-	elif az == 998:
+	elif mode == 'status' :
     		# Build the status command word.
     		output = chr(87)+zero5+zero5+chr(31)+chr(32)
     		cmd= ser.write(output)
@@ -115,15 +116,13 @@ while loop == 1 :
     		print ("Rotator stopped at %3d " %(azs)+ "Degrees Azimuth and %3d " %(els) + "Degrees Elevation")
     		print ("Azimuth multiplier is %3d "%(az_res)+ "  Elevation Multiplier is %3d "%(el_res))
 
-	elif  az == 989 :
-		loop = 0 
-
- 	else :
+ 	elif mode == 'set' :
 # now we have the az, we are not in the 3 other modes, so we are automatically in the "set mode",
 # so we ask the el to the rotator execute the commande.
-		az = az %360
+		input_az = input("Enter azimuth: ")
    		input_el = input("Enter Elevation: ")
-           	el = int(input_variable)%180
+		az = int(input_az)%360
+           	el = int(input_el)%180
 		
 		#see the protocol 
 		az = az + 360
@@ -144,6 +143,9 @@ while loop == 1 :
 	      output =  chr(87) + azm + chr(multi)+elm + chr(multi)+chr(47)+chr(32) # this cmd will stop the rotator
 	      cmd= ser.write(output)
     	      sleep(1)                        # wait for an answer
+	
+	elif mode == 'quit':
+		loop = 0 
 	      
 	     
 
