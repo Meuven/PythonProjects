@@ -9,7 +9,13 @@ import numpy as np
 from np import *
 import matplotlab.py as plt 
 from plt import *
-import ephem 
+import ephem
+import serial 
+
+def
+
+#Open port for the NetR9 GPS 
+ser  = serial.Serial(port, braud, timeout) 
 
 
 commande = [0]*13                   # command packet get 13 byte,  ASCII characters for az and el
