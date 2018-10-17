@@ -12,15 +12,20 @@ from plt import *
 import ephem
 import serial 
 
-def
+def calcul ():
 
 #Open port for the NetR9 GPS 
-ser  = serial.Serial(port, braud, timeout) 
+
+  port = ?
+  baud = ?
+  timeout = ?
+
+  ser  = serial.Serial(port, baud, timeout)
 
 
-commande = [0]*13                   # command packet get 13 byte,  ASCII characters for az and el
-commande[0] = 0x57                  # S (start) shall always be 0x57
-commande[12] = 0x20                 # End                    be 0x20 
+  commande = [0]*13                   # command packet get 13 byte,  ASCII characters for az and el
+  commande[0] = 0x57                  # S (start) shall always be 0x57
+  commande[12] = 0x20                 # End                    be 0x20 
 
 reponse = [0]*12                    # reponse packet get 12 byte, Byte values for az and el
 reponse[0] = 0x57
