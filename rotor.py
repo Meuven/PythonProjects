@@ -114,7 +114,9 @@ def rotator_mode ():
  		elif mode == 'set' :
 # now we have the az, we are not in the 3 other modes, so we are automatically in the "set mode",
 # so we ask the el to the rotator execute the commande.
+			print(" ")
 			input_az = input("Enter azimuth: ")
+			print(" ")
    			input_el = input("Enter Elevation: ")
 			az = int(input_az)%360
            		el = int(input_el)%180
@@ -141,7 +143,7 @@ def rotator_mode ():
 	
 		elif mode == 'quit':
 			loop = 0 
-	      
+	      ser.close()
 	     
 
 
