@@ -60,7 +60,7 @@ def rotator_mode ():
 	    		cmd= ser.write(output)
     			sleep(1)                        		# wait for an answer
 
-    			rep = ser.read(12)
+    			rep = ser.read(1000)
 #Now it's time to give the reponse to the user, before, we need to convert our datas:
     			H1 = ord(rep[1])
     			H2 = ord(rep[2])
@@ -89,7 +89,7 @@ def rotator_mode ():
     			cmd= ser.write(output)
     			sleep(1) 
 
-    			rep = ser.read(12)
+    			rep = ser.read(1000)
 			# Now as the stop commande,we're going to give the az and el but the rotator is still running
     			H1 = ord(rep[1])
     			H2 = ord(rep[2])
