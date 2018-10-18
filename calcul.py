@@ -50,7 +50,7 @@ ser = serial.Serial(port, baud, timeout)
 # this part is the part where we  collect the ship coordonate and  calculate with the TLE the al and avec every T secondes.
 
 duration mission = ?
-while loop duration mission  != 0:
+while loop duration mission  > 0:
     output = $GGA
     cmd = ser.write(output)     # this first commande will write the lat, direction lat,
                                 # the long and direction long
@@ -65,7 +65,7 @@ while loop duration mission  != 0:
         lat_lg.split(",")
         deg = rep[1]
         deg.split(",")
-        az_el = calcul( deg, lat_lg, TLE)
+        az_el = calcul( deg, lat_lg, TLE)  
         sleep(T)
         
         
@@ -76,7 +76,11 @@ while loop duration mission  != 0:
     else :
         print("error")
         sleep(T)                #wait the T time for the next commande
-    duration mission-= (T + 0.2)
+    duration mission = duration mission -T + 0.2
+    
+ser.close()
+return(az_el)
+
   
 
 
