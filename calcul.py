@@ -27,7 +27,7 @@ from time import sleep
         
  #we are going to first decoded the tle. The information we're are going to extract, is the time when the 
 # sat will be in the area, and it coordonates .
-( reprendre net R9 page 77 )
+
         
         
         
@@ -35,19 +35,54 @@ from time import sleep
 #Open port for the NetR9 GPS 
 ser = serial.Serial(port, baud, timeout)
 
-# Note that the netR9 has an HDT command which gives us directly the orientation of the sbt based on the geo north.
-    loop = 1
-    while loop ==1:
-        output = ?
-        cmd = ser.write(output)
-        sleep(0,1)              # wait for an answer
+
+#we are going to first decoded the tle. The information we're are going to extract, is the time when the 
+# sat will be in the area, and it coordonates .     
+
+
+
+
+
+
+
+
+
+# this part is the part where we  collect the ship coordonate and  calculate with the TLE the al and avec every T secondes.
+
+duration mission = ?
+while loop duration mission  != 0:
+    output = $GGA
+    cmd = ser.write(output)     # this first commande will write the lat, direction lat,
+                                # the long and direction long
+    sleep(0,1)                  # wait for an answer
+    output= $HDT
+    cmd = ser.write(output)     # this commande will write the orientation based on the geo north
+    sleep(0.1) 
+    if Serial.available > 0 :
+        rep= ser.read(1000)
+        rep.split("$")
+        lat_lg = rep[0]
+        lat_lg.split(",")
+        deg = rep[1]
+        deg.split(",")
+        az_el = calcul( deg, lat_lg, TLE)
+        sleep(T)
         
-        if ser.avaible() ==0 :  # if not answer wait the time T to have a new coordonate of the w
-            sleep(T)
-        else:
-            ship = ser.read(1000)
-            loop = 0
-            ser.close()
+        
+# now we juste create our two list in which we have the lat, the long and the orientation of the SBT.
+# With the TLE we can now calculate the orientation az and el of the rotor 
+        
+        
+    else :
+        print("error")
+        sleep(T)                #wait the T time for the next commande
+    duration mission-= (T + 0.2)
+  
+
+
+        
+        
+
      
 
         
