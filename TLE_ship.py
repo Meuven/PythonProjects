@@ -44,10 +44,10 @@ def decode_TLE(TLE):
 1 23839U 96020A   14066.96754476 -.00000012  00000-0  10000-3 0  9995
 2 23839 001.6368 073.2937 0005131 268.7608 236.3372 01.00266000 65663'''    # we will use this TLE for our examples 
     sat = ephem.readtle(*[line for line in tle.split('\n')])
-    lat = sat.sublat
-    long = sat.sublong
-    alt = sat.sublong
-    coor_sat = [lat,long,alt]
+    lat = sat.sublat                            # answer string  in deg min sec 
+    lng = sat.sublong
+    alt = sat.elevation
+    coor_sat = [lat,lng,alt]
     return (coor_sat)
 
 
@@ -70,7 +70,7 @@ def decode_ship():
         if Serial.available > 0 :
         rep= ser.read(1000)
             rep.split("$")
-            lat_lg = rep[0]
+            lat_lg = rep[0]         # see doc user netR9 to understand how the message is composated 
             lat_lg.split(",")
             deg = rep[1]
             deg.split(",")
