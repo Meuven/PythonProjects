@@ -54,6 +54,7 @@ def decode_TLE(TLE):
 
 # in this part we're going to collect the ship's coordonate and calculate with the TLE the al and az every T secondes.
 # The track mode will be actived 6 min before the sat comes in the reception area.
+
 def decode_ship():
     az_el = []
     TLE = ?
