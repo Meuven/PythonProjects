@@ -2,11 +2,7 @@
 
 # here can be found the protocol here : http://ryeng.name/blog/3 
 
-#Here can be found more precise example to understand the systeme 
-
 # We are going first to declare our listes and variables #
-
-*
 
 import serial
 import time
@@ -22,9 +18,9 @@ baud = ?
 ser = serial.Serial(port, baud, timeout = 0)
 
 def rotator_mode ():
-	rep = ['0']*12                    # reponse packet get 12 byte, Byte values for az and el
-	rep[0] = 'W'			  # ASCII charac for 0x57
-	rep[11] = ' '			  # ASCII charac for 0x20
+	#cmd = ['0']*12                    # cmd packet get 12 byte, Byte values for az and el
+	#cmd[0] = 'W'			  # ASCII charac for 0x57
+	#cmd[11] = ' '			  # ASCII charac for 0x20
 
 	az_max = 360
 	az_min = 0
@@ -143,7 +139,7 @@ def rotator_mode ():
 	
 		elif mode == 'quit':
 			loop = 0 
-	      ser.close()
+	ser.close()
 	     
 
 
