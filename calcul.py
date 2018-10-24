@@ -46,7 +46,7 @@ def calcul(deg, lat_lg,sat):
         sat_dec[1] = -1*(int(abs(lg_sat[0])) + float(lg_sat[1]/60) + float(lg_sat[2]/3600))
         
    # the elevation of the rotor is not really at the sea level. we pose m = the elev of the antenna .
-    m = 0,018
+    m = 0.018
     
     sat_dec[2] = sat[2] - m
      
