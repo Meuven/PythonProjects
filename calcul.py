@@ -3,9 +3,7 @@
 
 from math import *
 import numpy as np 
-from np import *
 import matplotlab.py as plt 
-from plt import *
 import ephem
 import serial 
 from time import sleep
@@ -65,29 +63,49 @@ def calcul(deg, lat_lg,sat):
     dist = robusta.distance(sbt)
     
     
-        # we can now calculate our elevation for the rotor . 
-        # for that we have to take in consideration the orientation of the ship ( data based on the true north).
-        # we don't have problem of sign here, because the elevation can't be negative .
+        # we can now calculate our elevation for the rotor . But we have to create 2 cases, because  the distance
+        # is just a " norm" withou orientation, and in fact it's not enough to restituate the geography of the situation .
     
-    deg_elev = float(atan(sat_dec[2]/dist)) # resultat should normaly be in rad 
-    deg_elev = degrees(deg_elev)
-    deg_elev = float("{0:.2f}".format(deg_elev)) 
+    alpha = float(atan(sat_dec[2]/dist))     # resultat should normaly be in rad 
+    alpha = degrees(alpha)  
+    deg_el = float("{0:.2f}".format(alpha)) 
     
-    # My idea was to create a third point with the same lat than the sbt and the same long than the sat
-    # thanks to it , we geometrically work with a rectangle triangle and we can apply our cos formule
     
-    # the probleme here is to have all the possible angle, the solution we use for alpha give use only positive solutions .
+    
+    
+    #for the azimuth, my idea was to create a third point with the same sbt's lat and sat's long
+    #thanks to it , we geometrically work with a rectangle triangle and we can apply our cos formule.
+    
+    #but firstly we have to create 4 cases, because the distance is just a " norm" withou orientation,
+    #and in fact it's not enough to restituate the geography of the situation .
+
  
     
     
     temp = latlon(lat_sbt, sat_dec[1])
     new_dist = temp.distance(sbt)
     
-    alpha = float(asin(new_dist/dist))
-    alpha = degrees(alpha)
-    alpha = float("{0:.2f}".format(deg_az)) 
+    beta = float(acos(new_dist/dist))
+        
+    if  robusta[0] >= sbt[0] and robusta[1] >= sbt[1] :
+        deg_sat = beta
+        
+    elif robusta[0] > sbt[0] and robusta[1] < sbt[1] :
+        deg_sat = pi - beta
+            
+    if  robusta[0] < sbt[0] and robusta[1] < sbt[1] :
+        deg_sat = pi + beta
+        
+    elif robusta[0] < sbt[0] and robusta[1] > sbt[1] :
+        deg_sat= 2*pi - beta 
+   
+    deg_sat = degrees(deg_sat)
     
-    deg_az = alpha - deg_sbt
+    #Moreover we have to take in consideration ship's orientation ( data based on the true north).  
+    
+    deg_az = deg_sat - deg_sbt
+    
+    deg_az= float("{0:.2f}".format(deg_az)) 
     
     return ([deg_az,deg_el])
     
