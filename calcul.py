@@ -59,6 +59,7 @@ def calcul(deg, lat_lg,sat):
     robusta = (sat_dec[0],sat_dec[1])
     sbt = (lat_sbt,lg_sbt)
     dist = great_circle(robusta,sbt).miles
+    dist = dist *1.60934                # convert miles into km 
     
     
         # we can now calculate our elevation for the rotor . But we have to create 2 cases, because  the distance
@@ -77,6 +78,7 @@ def calcul(deg, lat_lg,sat):
     
     temp = (lat_sbt, sat_dec[1])
     new_dist = great_circle(sbt,temp).miles
+    new_dist= new_dist * 1.60934
     
     beta = float(acos(new_dist/dist))
         
