@@ -11,20 +11,10 @@ import matplotlab.py as plt
 from plt import *
 import ephem
 import serial 
-from time import sleep
-
-#class calcul:
-    #time sleep = 0.1
-    #def __init__(self, ip, port,baud,timeout, time_to_stop=None, frequency=None, leep_time=None):
-        #self.IP = ip 
-        #self.PORT = port 
-        #self.BAUD = baud 
-        #self.TIMEOUT = timeout 
-        
+import time 
 
 
-        
-        
+              
  #we are going to first decoded the tle. The information we're are going to extract, is the time when the 
 # sat will be in the area, and it coordonates .
 
@@ -59,15 +49,24 @@ def decode_ship():
     az_el = []
     TLE = ?
     duration mission = ?
+    
+    port= ?
+    baud = ?
+    timeout = ?
+    
+    ser = serial.Serial( port, time, baud) 
+    
     while loop duration mission  > 0:
         k = 0                       #this is a summer that will determinate how many elements we have on our list 
         output = $GGA
         cmd = ser.write(output)     # this first commande will write the lat, direction lat,
                                     # the long and direction long
-        sleep(0,25)                 # wait for an answer
+        time.sleep(0,25)                 # wait for an answer
+        
         output= $HDT
         cmd = ser.write(output)     # this commande will write the orientation based on the geo north
-        sleep(0.25) 
+        time.sleep(0.25) 
+        
         if Serial.available > 0 :
         rep= ser.read(1000)
             rep.split("$")
@@ -79,7 +78,7 @@ def decode_ship():
             az_el.append( calcul( deg, lat_lg,sat))  # liste of 2 elem with az_el[0] = az and az_el[1] = el of the rotor
             k+=1
             return(az_el,k)
-            sleep(T)
+            time.sleep(T)
         
         
 # now we juste create our two list in which we have the lat, the long and the orientation of the SBT.
@@ -91,28 +90,7 @@ def decode_ship():
             az_el.append(out)
             k+= 1
             return(az_el)
-            sleep(T)                #wait the T time for the next commande
+            time.sleep(T)                #wait the T time for the next commande
         duration mission = duration mission + 0.5 -T
     
     ser.close()
-
-  
-
-
-        
-        
-
-     
-
-        
-
-
-
-          
-
- 
-            
-      
-    
-  
-  
