@@ -4,10 +4,10 @@
 from math import *
 import numpy as np 
 import matplotlab.py as plt 
-import ephem
 import serial 
 from time import sleep
-import latlon
+import geopy
+from geopy.distance import great_circle
   
 #note : ephem gives the lat and long coor on deg min sec . This one should be convert first in deg decimal for the calcul
 #note : the calcul for te conversion is dec = d+(m/60)+(s/3600) with a coordonate (d°m's")
@@ -56,9 +56,9 @@ def calcul(deg, lat_lg,sat):
     
         # now we have our new sat_dec with lat, long and alt, in deg dec we can do the calcul.
     
-    robusta = latlon(sat_dec[0],sat_dec[1])
-    sbt = latlon(lat_sbt,lg_sbt)
-    dist = robusta.distance(sbt)
+    robusta = (sat_dec[0],sat_dec[1])
+    sbt = (lat_sbt,lg_sbt)
+    dist = great_circle(robusta,sbt).miles
     
     
         # we can now calculate our elevation for the rotor . But we have to create 2 cases, because  the distance
@@ -75,8 +75,8 @@ def calcul(deg, lat_lg,sat):
     #but firstly we have to create 4 cases, because the distance is just a " norm" withou orientation,
     #and in fact it's not enough to restituate the geography of the situation .   
     
-    temp = latlon(lat_sbt, sat_dec[1])
-    new_dist = temp.distance(sbt)
+    temp = (lat_sbt, sat_dec[1])
+    new_dist = great_circle(sbt,temp).miles
     
     beta = float(acos(new_dist/dist))
         
