@@ -7,8 +7,6 @@
 import serial
 import time
 import os 
-from time import sleep
-
 # get the Comm Port information
 timeout = ?
 port = ?
@@ -54,7 +52,7 @@ def rotator_mode ():
 		if mode == 'stop' :                  	        # this mode juste stops the rotator and gives the az and el 
 			output = chr(87)+zero5+zero5+chr(15)+chr(32) 	# this cmd will stop the rotator
 	    		cmd= ser.write(output)
-    			sleep(1)                        		# wait for an answer
+    			time.sleep(1)                        		# wait for an answer
 
     			rep = ser.read(1000)
 #Now it's time to give the reponse to the user, before, we need to convert our datas:
@@ -83,7 +81,7 @@ def rotator_mode ():
     			# Build the status command word.
     			output = chr(87)+zero5+zero5+chr(31)+chr(32)
     			cmd= ser.write(output)
-    			sleep(1) 
+    			time.sleep(1) 
 
     			rep = ser.read(1000)
 			# Now as the stop commande,we're going to give the az and el but the rotator is still running
@@ -135,15 +133,9 @@ def rotator_mode ():
              		# Build message to be sent to controller
 	      		output =  chr(87) + azm + chr(multi)+elm + chr(multi)+chr(47)+chr(32) # this cmd will stop the rotator
 	      		cmd= ser.write(output)
-    	      		sleep(1)                        # wait for an answer
+    	      		time.sleep(1)                        # wait for an answer
 	
 		elif mode == 'quit':
 			loop = 0 
 	ser.close()
 	     
-
-
-  
-
-
-                                                                                                                                                                  
