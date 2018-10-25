@@ -6,10 +6,8 @@
 
 from math import *
 import numpy as np 
-from np import *
 import matplotlab.py as plt 
-from plt import *
-import ephem
+from pyorbital import tlefile
 import serial 
 import time 
 
@@ -30,14 +28,11 @@ import time
   
 
 def decode_TLE(TLE):
-    TLE ='''0 INMARSAT 3-F1
-1 23839U 96020A   14066.96754476 -.00000012  00000-0  10000-3 0  9995
-2 23839 001.6368 073.2937 0005131 268.7608 236.3372 01.00266000 65663'''    # we will use this TLE for our examples 
-    sat = ephem.readtle(*[line for line in tle.split('\n')])
-    lat = sat.sublat                            # answer string  in deg min sec 
-    lng = sat.sublong
-    alt = sat.elevation
-    coor_sat = [lat,lng,alt]
+
+#here we can find more explanations about the module pyorbital here : https://pyorbital.readthedocs.io/en/latest/
+
+    sat = tlefile.read('C:\Users\Student-CIC-05\Desktop\Meuven\code\TLE.txt')
+    coor_sat.get_lonlatalt(dtobj)
     return (coor_sat)
 
 
