@@ -8,9 +8,7 @@ import ephem
 import serial 
 from time import sleep
 import latlon
-
-
-    
+  
 #note : ephem gives the lat and long coor on deg min sec . This one should be convert first in deg decimal for the calcul
 #note : the calcul for te conversion is dec = d+(m/60)+(s/3600) with a coordonate (d°m's")
 # note : GNSS give the lat and long coor on  deg decimal . it's ok  for the calcul .
@@ -71,16 +69,11 @@ def calcul(deg, lat_lg,sat):
     deg_el = float("{0:.2f}".format(alpha)) 
     
     
-    
-    
     #for the azimuth, my idea was to create a third point with the same sbt's lat and sat's long
     #thanks to it , we geometrically work with a rectangle triangle and we can apply our cos formule.
     
     #but firstly we have to create 4 cases, because the distance is just a " norm" withou orientation,
-    #and in fact it's not enough to restituate the geography of the situation .
-
- 
-    
+    #and in fact it's not enough to restituate the geography of the situation .   
     
     temp = latlon(lat_sbt, sat_dec[1])
     new_dist = temp.distance(sbt)
@@ -109,15 +102,3 @@ def calcul(deg, lat_lg,sat):
     
     return ([deg_az,deg_el])
     
-    
-    
-    
-    
-                    
-    
-    
-    
-        
-        
-        
-   
