@@ -23,7 +23,7 @@ def decode_TLE():
     sat = tlefile.read('INMARSAT 3-F1'	,'C:\Users\Student-CIC-05\Desktop\Meuven\code\TLE.txt')
 # we can use the command "Orbital", thanks to whom (with the name of the sat) we get directly on the internet the sat's TLE
     now = datetime.utcnow()
-    coor_sat= sat.get_lonlatalt(dtobj)
+    coor_sat= sat.get_lonlatalt(now)
     return (coor_sat)         # gives a tuples with long, lat , alt 
 
 
