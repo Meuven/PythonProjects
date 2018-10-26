@@ -16,17 +16,6 @@ from datetime import datetime
  #we are going to first decoded the tle. The information we're are going to extract, is the time when the 
 # sat will be in the area, and it coordonates .
 
-
-#On artificial satellites, also sets:
-#Geographic point beneath satellite:
-#sublat — Latitude (+N)
-#sublong — Longitude (+E)
-
-#elevation — Geocentric height above sea level (m)
-#range — Distance from observer to satellite (m)
-#range_velocity — Range rate of change (m/s)
-  
-
 def decode_TLE():
 
 #here we can find more explanations about the module pyorbital here : https://pyorbital.readthedocs.io/en/latest/
@@ -35,7 +24,7 @@ def decode_TLE():
 # we can use the command "Orbital", thanks to whom (with the name of the sat) we get directly on the internet the sat's TLE
     now = datetime.utcnow()
     coor_sat= sat.get_lonlatalt(dtobj)
-    return (coor_sat)
+    return (coor_sat)         # gives a tuples with long, lat , alt 
 
 
 
