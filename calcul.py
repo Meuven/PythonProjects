@@ -26,7 +26,7 @@ def calcul(deg, lat_lg,sat):
    # the elevation of the rotor is not really at the sea level. we pose m = the elev of the antenna .
     m = 0.018
     
-    sat_dec[2] = sat[2] - m
+    sat[2] = sat[2] - m
      
         # here every GNSS conversion 
         
@@ -34,18 +34,16 @@ def calcul(deg, lat_lg,sat):
     lg_sbt = float(lat_lg[4])
     deg_sbt = float(deg[1])
     
-        # now we have our new sat_dec with lat, long and alt, in deg dec we can do the calcul.
     
-    robusta = (sat_dec[0],sat_dec[1])
+    robusta = (sat[1],sat[0])
     sbt = (lat_sbt,lg_sbt)
     dist = great_circle(robusta,sbt).miles
     dist = dist *1.60934                # convert miles into km 
     
     
-        # we can now calculate our elevation for the rotor . But we have to create 2 cases, because  the distance
-        # is just a " norm" withou orientation, and in fact it's not enough to restituate the geography of the situation .
+        # we can now calculate our elevation for the rotor .
     
-    alpha = float(atan(sat_dec[2]/dist))     # resultat should normaly be in rad 
+    alpha = float(atan(sat[2]/dist))     # resultat should normaly be in rad 
     alpha = degrees(alpha)  
     deg_el = float("{0:.2f}".format(alpha)) 
     
@@ -56,7 +54,7 @@ def calcul(deg, lat_lg,sat):
     #but firstly we have to create 4 cases, because the distance is just a " norm" withou orientation,
     #and in fact it's not enough to restituate the geography of the situation .   
     
-    temp = (lat_sbt, sat_dec[1])
+    temp = (lat_sbt, sat[0])
     new_dist = great_circle(sbt,temp).miles
     new_dist= new_dist * 1.60934
     
