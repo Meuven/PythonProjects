@@ -23,26 +23,6 @@ def calcul(deg, lat_lg,sat):
     print( sat[2])
     
     
-    lat_sat= sat[0].split(':')
-    lg_sat = sat[1].split(':')
-    sat_dec = [0,0,0]
-    
-    for k in range(lat_sat):            # the coordonates are considerated as str, for our calcul we first have to convert them 
-        lat_sat[k] = float(lat_sat[k])
-        
-    for k in range(lg_sat):
-        lg_sat[k] = float(lg_sat[k])
-        
-    if lat_sat[0] >= 0 :
-        sat_dec[0] = int(lat_sat[0]) + float(lat_sat[1]/60) + float(lat_sat[2]/3600)
-    else : 
-        sat_dec[0] = -1*(int(abs(lat_sat[0])) + float(lat_sat[1]/60) + float(lat_sat[2]/3600))
-    
-    if lg_sat[0] >= 0 :
-        sat_dec[1] = int(lg_sat[0]) + float(lg_sat[1]/60) + float(lg_sat[2]/3600)
-    else : 
-        sat_dec[1] = -1*(int(abs(lg_sat[0])) + float(lg_sat[1]/60) + float(lg_sat[2]/3600))
-        
    # the elevation of the rotor is not really at the sea level. we pose m = the elev of the antenna .
     m = 0.018
     
