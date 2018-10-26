@@ -10,7 +10,7 @@ import matplotlab.py as plt
 from pyorbital import tlefile
 import serial 
 import time 
-
+from datetime import datetime
 
               
  #we are going to first decoded the tle. The information we're are going to extract, is the time when the 
@@ -27,12 +27,14 @@ import time
 #range_velocity — Range rate of change (m/s)
   
 
-def decode_TLE(TLE):
+def decode_TLE():
 
 #here we can find more explanations about the module pyorbital here : https://pyorbital.readthedocs.io/en/latest/
 
-    sat = tlefile.read('C:\Users\Student-CIC-05\Desktop\Meuven\code\TLE.txt')
-    coor_sat.get_lonlatalt(dtobj)
+    sat = tlefile.read('INMARSAT 3-F1'	,'C:\Users\Student-CIC-05\Desktop\Meuven\code\TLE.txt')
+# we can use the command "Orbital", thanks to whom (with the name of the sat) we get directly on the internet the sat's TLE
+    now = datetime.utcnow()
+    coor_sat= sat.get_lonlatalt(dtobj)
     return (coor_sat)
 
 
